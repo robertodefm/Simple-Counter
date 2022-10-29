@@ -1,26 +1,27 @@
 import React from "react";
+import { SecondsCounter } from "./secondscounter.jsx";
+import PropTypes from "prop-types";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+
 
 //create your first component
-const Home = () => {
+const Home = (props) => {
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="text-center d-flex">
+			<SecondsCounter img={<i class="fa-regular fa-clock fs-1"></i>}/>
+			<SecondsCounter unidad={Math.floor((props.seconds/100000)%10)}/>
+			<SecondsCounter unidad={Math.floor((props.seconds/10000)%10)}/>
+			<SecondsCounter unidad={Math.floor((props.seconds/1000)%10)}/>
+			<SecondsCounter unidad={Math.floor((props.seconds/100))%10}/>
+			<SecondsCounter unidad={Math.floor((props.seconds/10)%10)}/>
+			<SecondsCounter unidad={Math.floor((props.seconds)%10)}/>
+
 		</div>
 	);
 };
+
+Home.propTypes={
+	seconds: PropTypes.number,
+}
 
 export default Home;
